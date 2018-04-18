@@ -12,28 +12,28 @@
                             <div id="errors" class="errors"><ul></ul></div> 
                         </div>
                         <div class="form-group">
-                            <input type="hidden" id="token" name="token"><br>
+                            <input type="hidden" id="token" name="token">
                         </div>
                         <div class="form-group">
                             <label for="">Name</label>
-                            <input type="text" class="form-control" id="name" name="name"><br>
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="form-group">
                             <label for="">E-mail</label>
-                            <input type="text" id="email" name="email" class="form-control"><br>
+                            <input type="text" id="email" name="email" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Salary</label>
-                            <input type="text" id="salary" name="salary" class="form-control"><br>
+                            <input type="text" id="salary" name="salary" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Birthday</label>
-                            <input type="text" id="birthday" name="birthday" class="form-control" readonly="readonly"><br>
+                            <input type="text" id="birthday" name="birthday" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Gender</label>
                             <select name="gender" id="gender" class="form-control">
-                                <option value="M">MALE</option>
+                                <option value="M" selected>MALE</option>
                                 <option value="F">FEMALE</option>
                             </select><br>
                         </div>

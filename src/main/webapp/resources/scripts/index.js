@@ -10,11 +10,12 @@ $(document).ready(function () {
                 $.each(data, function (idx, obj) {
                     $("tbody").append("<tr><td class=\"col-md-2 text-center\">" + obj.id + "</td><td class=\"col-md-3\">" + obj.name + "</td><td class=\"col-md-3 text-center\">" + obj.birthday + "</td><td class=\"col-md-2 text-center\"><a id=\"lnkSelect\" href=\"/person/edit/" + obj.id + "\"><img class=\"icon-edit\" src=\"../../../resources/images/icons/edit.png\" alt=\"\"/></a></td></tr>");
                 });
-                $('table').on().DataTable({
+                var table = $('table').on().DataTable({
                     "aLengthMenu": [[1, 5, 10, -1], [1, 5, 10, "All"]],
                     "iDisplayLength": 5,
                     responsive: true
                 });
+                table.order([0, 'desc']).draw();
                 $('.dataTables_length').remove();
                 $("input[type=search]").addClass("form-control col-md-6");
             } else {

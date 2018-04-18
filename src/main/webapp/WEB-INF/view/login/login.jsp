@@ -18,11 +18,11 @@
                         </div>
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input type="text" id="username" name="username" class="form-control" value="anderson"><br>
+                            <input type="text" id="username" name="username" class="form-control"><br>
                         </div>
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" id="password" name="password" class="form-control" value="121181"><br>
+                            <input type="password" id="password" name="password" class="form-control"><br>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-success col-md-3 pull-right" value="Login">

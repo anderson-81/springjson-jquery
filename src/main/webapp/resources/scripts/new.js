@@ -12,7 +12,9 @@ $(document).ready(function () {
             }
         });
     }
+        
     Token();
+    
     $("#errors").hide();
     $("form").submit(function (event) {
         $("#errors").hide();
@@ -39,7 +41,6 @@ $(document).ready(function () {
             success: function (data, textStatus, jqXHR) {
                 var result = JSON.parse(data);
                 if (result.alert !== undefined) {
-                    $("body").append("<p>" + result.alert + "</p>");
                     alert(result.alert);
                 }
                 if (result.errors !== undefined) {

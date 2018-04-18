@@ -81,7 +81,7 @@ public class PersonDAO {
         try {
             Session session = connectionSession.OpenSession();
             if (session != null) {
-                List<Person> persons = session.createQuery("from Person where name LIKE :name ORDER BY id").setParameter("name", name + '%').list();
+                List<Person> persons = session.createQuery("from Person where name LIKE :name ORDER BY id DESC").setParameter("name", name + '%').list();
                 session.close();
                 return persons;
             }

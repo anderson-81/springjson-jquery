@@ -3,7 +3,9 @@ package com.springjson.services.functions;
 import java.util.ArrayList;
 import java.util.List;
 import com.springjson.services.daos.PersonDAO;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,6 @@ public class ValidationData {
         this.ValidationSalary(salary);
         this.ValidationBirthday(birthday);
         this.ValidationGender(gender);
-        //ValidationPicture(picture);
         return this.list_errors;
     }
 
@@ -77,15 +78,17 @@ public class ValidationData {
         }
     }
 
-    private void ValidationBirthday(String birthday) {
+    private void ValidationBirthday(String birthday){
         if (!"".equals(birthday)) {
             try {
-                Calendar cal1 = Calendar.getInstance();
-                int year = Integer.parseInt(birthday.substring(0, 4));
-                int month = Integer.parseInt(birthday.substring(5, 7));
-                int day = Integer.parseInt(birthday.substring(8, 10));
-                cal1.set(year, month, day);
-            } catch (NumberFormatException e) {
+                //Calendar cal1 = Calendar.getInstance();
+                //int year = Integer.parseInt(birthday.substring(0, 4));
+                //int month = Integer.parseInt(birthday.substring(5, 7));
+                //int day = Integer.parseInt(birthday.substring(8, 10));
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = sdf.parse(birthday);
+                //cal1.set(year, month, day);
+            } catch (ParseException e) {
                 list_errors.add("Invalid birthday.");
             }
         } else {
@@ -102,18 +105,6 @@ public class ValidationData {
             list_errors.add("Empty gender.");
         }
     }
-
-    /*
-    private void ValidationPicture(byte[] picture) {
-        if (picture != null) {
-            if (picture.length == 0) {
-                list_errors.add("Picture is empty.");
-            }
-        } else {
-            list_errors.add("Picture is empty.");
-        }
-    }
-    */
 
     public List<String> ValidationUser(String username, String password) {
         this.list_errors = new ArrayList<>();

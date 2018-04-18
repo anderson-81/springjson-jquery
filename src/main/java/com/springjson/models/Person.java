@@ -17,7 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -117,8 +116,8 @@ public class Person implements Serializable {
         else
             this.gender = Gender.F;
         try{
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            this.birthday = (Date)formatter.parse(birthday);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            this.birthday = sdf.parse(birthday);
         }catch(ParseException e){
             System.err.println(e.getMessage());
         }

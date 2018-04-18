@@ -1,5 +1,4 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-
 <t:_layout>
     <jsp:attribute name="body_area">
         <div class="container">
@@ -34,15 +33,5 @@
         </div>
         <script src="../../../resources/scripts/index.js" type="text/javascript"></script>
         <link href="../../../resources/styles/index.css" rel="stylesheet" type="text/css"/>
-        
-        <script>
-            
-            
-            
-            
-        </script>
-        
-        
-        
     </jsp:attribute>
 </t:_layout>

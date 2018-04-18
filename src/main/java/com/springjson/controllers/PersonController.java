@@ -1,17 +1,12 @@
 package com.springjson.controllers;
 
 import com.google.gson.Gson;
-import com.springjson.models.Gender;
 import com.springjson.models.Person;
 import com.springjson.services.daos.PersonDAO;
 import com.springjson.services.functions.Alert;
 import com.springjson.services.functions.FormatDateFunction;
 import com.springjson.services.functions.Picture;
 import com.springjson.services.functions.ValidationData;
-import com.springjson.services.security.Token;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +39,7 @@ public class PersonController {
 
     @Autowired
     private Person person;
-    
+
     @Autowired
     private FormatDateFunction dateFormat;
 
@@ -64,7 +59,7 @@ public class PersonController {
             return "errors/505";
         }
     }
-   
+
     @RequestMapping(value = "/person/new", method = RequestMethod.GET)
     public String New(HttpSession session) {
         return "person/new";
@@ -112,12 +107,11 @@ public class PersonController {
                 datas.put("page", "/errors/505");
                 return gson.toJson(datas);
             }
-            List<String> errors = validationData.ValidationPerson(name, email, birthday, salary, gender, picture);
+            List<String> errors = validationData.ValidationPerson(name, email, birthday, salary, gender, null);
             if (errors.isEmpty()) {
                 int result = personDAO.InsertPerson(person.GetPerson(name, email, birthday, salary, gender, picture));
                 if (result != -1) {
                     datas.put("alert", alert.GetAlert(1, result));
-                    datas.put("css", "success");
                     datas.put("page", "/person/index");
                 }
                 if (result == -1) {
@@ -130,6 +124,7 @@ public class PersonController {
         } else {
             datas.put("page", "/errors/505");
         }
+
         return gson.toJson(datas);
     }
 
@@ -145,33 +140,14 @@ public class PersonController {
                 if (person != null) {
                     if (!"".equals(person.getName())) {
                         List<String> errors = null;
+
                         if (!email.equals(person.getEmail())) {
                             errors = validationData.ValidationPerson(name, email, birthday, salary, gender, null);
                         } else {
                             errors = validationData.ValidationPerson(name, null, birthday, salary, gender, null);
                         }
                         if (errors.isEmpty()) {
-                            person.setName(name);
-                            person.setEmail(email);
-                            try {
-                                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                                person.setBirthday(formatter.parse(birthday));
-                            } catch (ParseException e) {
-                                datas.put("page", "/errors/505");
-                                return gson.toJson(datas);
-                            }
-                            person.setSalary(Double.parseDouble(salary));
-                            if (gender.equals(Gender.M.toString())) {
-                                person.setGender(Gender.M);
-                            } else {
-                                person.setGender(Gender.F);
-                            }
-                            if (file != null) {
-                                if (file.getBytes().length > 0) {
-                                    person.setPicture(file.getBytes());
-                                }
-                            }
-                            int result = personDAO.EditPerson(person);
+                            int result = personDAO.EditPerson(person.GetPerson(name, email, birthday, salary, gender, file.getBytes()));
                             if (result != -1) {
                                 datas.put("alert", alert.GetAlert(2, result));
                                 datas.put("page", "/person/index");
@@ -179,6 +155,7 @@ public class PersonController {
                             if (result == -1) {
                                 datas.put("page", "/errors/505");
                             }
+
                         } else {
                             datas.put("errors", errors);
                             datas.put("person", person);
@@ -186,6 +163,7 @@ public class PersonController {
                     } else {
                         datas.put("page", "/errors/404");
                     }
+
                 } else {
                     datas.put("page", "/errors/505");
                 }

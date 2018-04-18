@@ -42,7 +42,6 @@ public class Alert {
                 this.text = "Unsuccessfully logged out.";
             }
         }
-
         return this.text;
     }
 }

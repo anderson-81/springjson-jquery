@@ -30,14 +30,16 @@ $(document).ready(function () {
             if (result !== null)
             {
                 $("form").show();
+
                 $("#token").val(token);
+
                 $("#id").val(result["person"].id);
                 $("#name").val(result["person"].name);
                 $("#email").val(result["person"].email);
                 $('#birthday').val(result["birthday"]);
                 $("#salary").val(result["person"].salary);
                 $("#gender").val(result["person"].gender);
-                $("#current_picture").attr("href", result["picture"]);
+                $("#avatar").attr("src", result["picture"]);
                 $("#lnkDelete").click(function () {
                     if (confirm('Do you want delete this record?'))
                     {
@@ -99,7 +101,7 @@ $(document).ready(function () {
                 success: function (data, textStatus, jqXHR) {
 
                     var result = JSON.parse(data);
-
+                    
                     if (result.alert !== undefined) {
                         alert(result.alert);
                     }
@@ -121,7 +123,7 @@ $(document).ready(function () {
                     $(location).attr("href", "/errors/505");
                 }
             });
-            event.preventDefault();
         }
+        event.preventDefault();
     });
 });

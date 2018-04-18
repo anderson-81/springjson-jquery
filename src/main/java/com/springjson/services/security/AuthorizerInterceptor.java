@@ -17,7 +17,7 @@ public class AuthorizerInterceptor extends HandlerInterceptorAdapter {
         if (request.getSession().getAttribute("name") != null) {
             return true;
         }
-        
+
         response.sendRedirect("/login");
         return false;
     }

@@ -18,11 +18,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <img src="../../../resources/images/logos/postgresql.png" alt="" class="postgresql pull-right"/>
-                        <img src="../../../resources/images/logos/hibernate.png" alt="" class="hibernate  pull-right"/>
-                        <img src="../../../resources/images/logos/spring.png" alt="" class="spring  pull-right"/>
-                        <img src="../../../resources/images/logos/jquery.png" alt="" class="jquery  pull-right"/>
-                        <img src="../../../resources/images/logos/java.png" alt="" class="java  pull-right"/>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 package com.springjson.controllers;
 
 import com.google.gson.Gson;
+import com.springjson.services.connections.ConnectionSession;
 import com.springjson.services.functions.Alert;
 import com.springjson.services.security.Token;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,9 @@ public class HomeController {
     
     @Autowired
     private Alert alert;
+    
+    @Autowired
+    private ConnectionSession connect;
     
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String Index(HttpSession session) {
